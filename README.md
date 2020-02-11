@@ -24,6 +24,8 @@ and state-of-the art for both software and hardware.
 | 15 |          105 |  30 | 49 |   30 |
 | 16 |          120 |  32 | 56 |   32 |
 
+A verilog implementation of these gadgets is available [here](https://github.com/cassiersg/fullverif/blob/master/lib_v/MSKref.v).
+
 [1] Faust, S., Grosso, V., Merino Del Pozo, S., Paglialonga, C., & Standaert,
 F.-X. (2018). Composable Masking Schemes in the Presence of Physical Defaults &
 the Robust Probing Model. IACR Transactions on Cryptographic Hardware and
