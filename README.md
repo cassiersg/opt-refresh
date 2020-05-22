@@ -3,7 +3,7 @@
 This repository contains the
 [maskverif](https://gitlab.com/benjgregoire/maskverif/) description of
 optimized glitch-robust SNI refresh gadgets for d=2,...,16 shares introduced in [4].
-A human-readable description of the gadgets is available in <opt_refresh.pdf>.
+A human-readable description of the gadgets is available in [opt_refresh.pdf](opt_refresh.pdf).
 
 We provide below a comparison of the randomness complexities of these gadgets
 and state-of-the art for both software and hardware.
