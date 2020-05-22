@@ -1,0 +1,141 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amsfonts}
+\usepackage{multicol}
+\usepackage[usenames, dvipsnames, table]{xcolor}
+
+\title{Pseudo-code of optimized SNI refresh gadgets}
+\author{Gaëtan Cassiers \and Benjamin Grégoire}
+\date{}
+
+\newcommand{\reg}[1]{\mathsf{R}\left[#1\right]}
+\newcommand{\vect}[1]{\mathbf{#1}}
+
+
+\begin{document}
+
+\maketitle
+
+The input (resp., output) sharing is denoted as $\vect{x}$ (resp., $\vect{y}$).
+All $r_i$ variables are independent uniform random elements, and $\vect{s}^i$
+are vectors of $d$ independent randoms elements.
+The $(\cdot \gg i)$ operator applied to a vector denotes a rotation of its
+elements: the 1st element becomes the $i+1$-th, etc.
+Registers are denoted~as~$\reg{\cdot}$.
+
+\setlength{\columnsep}{0.1cm}
+\begin{multicols}{3}
+    \footnotesize{
+        {\centering $d=2$\\}
+        \noindent
+        $y_0 \leftarrow \reg{x_0 + r_0}$ \\
+        $y_1 \leftarrow \reg{x_1 + r_0}$
+
+        {\centering $d=3$\\}
+        \noindent
+        $t_0 \leftarrow \reg{r_0 + r_1}$ \\
+        $y_0 \leftarrow \reg{x_0 + r_0}$ \\
+        $y_1 \leftarrow \reg{x_1 + r_1}$ \\
+        $y_2 \leftarrow \reg{x_2 + t_0}$
+
+        {\centering $d=4,5$ \\}
+        \noindent
+        $\vect{t^0} \leftarrow \reg{\vect{s^0} + (\vect{s^0} \gg 1)}$ \\
+        $\vect{y} \leftarrow \reg{\vect{x} + \vect{t^0}}$
+
+        {\centering $d=6$\\}
+        \noindent
+        $\vect{t^0} \leftarrow \reg{\vect{s^0} + (\vect{s^0} \gg 1)}$ \\
+        $t^0_0 \leftarrow \reg{t^0_0 + r_0}$ \\
+        $t^0_3 \leftarrow \reg{t^0_3 + r_0}$ \\
+        $\vect{y} \leftarrow \reg{\vect{x} + \vect{t^0}}$
+
+        {\centering $d=7$\\}
+        \noindent
+        $\vect{t^0} \leftarrow \reg{\vect{s^0} + (\vect{s^0} \gg 1)}$ \\
+        $t^0_0 \leftarrow \reg{t^0_0 + r_0}$ \\
+        $t^0_2 \leftarrow \reg{t^0_2 + r_1}$ \\
+        $t^0_4 \leftarrow \reg{t^0_4 + r_0}$ \\
+        $t^0_6 \leftarrow \reg{t^0_6 + r_1}$ \\
+        $\vect{y} \leftarrow \reg{\vect{x} + \vect{t^0}}$
+
+        {\centering $d=8$ \\}
+        \noindent
+        $\vect{t^0} \leftarrow \reg{\vect{s^0} + (\vect{s^0} \gg 1)}$ \\
+        $t^0_0 \leftarrow \reg{t^0_0 + r_0}$ \\
+        $t^0_1 \leftarrow \reg{t^0_1 + r_1}$ \\
+        $t^0_2 \leftarrow \reg{t^0_2 + r_2}$ \\
+        $t^0_4 \leftarrow \reg{t^0_4 + r_0}$ \\
+        $t^0_5 \leftarrow \reg{t^0_5 + r_1}$ \\
+        $t^0_6 \leftarrow \reg{t^0_6 + r_2}$ \\
+        $\vect{y} \leftarrow \reg{\vect{x} + \vect{t^0}}$
+
+        {\centering $d=9$ \\}
+        \noindent
+        $\vect{t^0} \leftarrow \reg{\vect{s^0} + (\vect{s^0} \gg 1)}$ \\
+        $t^0_0 \leftarrow \reg{t^0_0 + r_0}$ \\
+        $t^0_1 \leftarrow \reg{t^0_1 + r_1}$ \\
+        $t^0_3 \leftarrow \reg{t^0_3 + r_2}$ \\
+        $t^0_4 \leftarrow \reg{t^0_4 + r_0}$ \\
+        $t^0_6 \leftarrow \reg{t^0_6 + r_1}$ \\
+        $t^0_7 \leftarrow \reg{t^0_7 + r_2}$ \\
+        $\vect{y} \leftarrow \reg{\vect{x} + \vect{t^0}}$
+
+        {\centering $d=10$ \\}
+        \noindent
+        $\vect{t^0} \leftarrow \reg{\vect{s^0} + (\vect{s^0} \gg 1)}$ \\
+        $t^0_0 \leftarrow \reg{t^0_0 + r_0}$ \\
+        $t^0_1 \leftarrow \reg{t^0_1 + r_1}$ \\
+        $t^0_2 \leftarrow \reg{t^0_2 + r_2}$ \\
+        $t^0_3 \leftarrow \reg{t^0_3 + r_3}$ \\
+        $t^0_4 \leftarrow \reg{t^0_4 + r_4}$ \\
+        $t^0_5 \leftarrow \reg{t^0_5 + r_0}$ \\
+        $t^0_6 \leftarrow \reg{t^0_6 + r_1}$ \\
+        $t^0_7 \leftarrow \reg{t^0_7 + r_2}$ \\
+        $t^0_8 \leftarrow \reg{t^0_8 + r_3}$ \\
+        $t^0_9 \leftarrow \reg{t^0_9 + r_4}$ \\
+        $\vect{y} \leftarrow \reg{\vect{x} + \vect{t^0}}$
+
+        {\centering $d=11$\\}
+        \noindent
+        $\vect{t^0} \leftarrow \reg{\vect{s^0} + (\vect{s^0} \gg 1)}$ \\
+        $t^0_0 \leftarrow \reg{t^0_0 + r_0}$ \\
+        $t^0_1 \leftarrow \reg{t^0_1 + r_1}$ \\
+        $t^0_2 \leftarrow \reg{t^0_2 + r_2}$ \\
+        $t^0_3 \leftarrow \reg{t^0_3 + r_3}$ \\
+        $t^0_4 \leftarrow \reg{t^0_4 + r_4}$ \\
+        $t^0_5 \leftarrow \reg{t^0_5 + r_0}$ \\
+        $t^0_6 \leftarrow \reg{t^0_6 + r_1}$ \\
+        $t^0_7 \leftarrow \reg{t^0_7 + r_2 + r_5}$ \\
+        $t^0_8 \leftarrow \reg{t^0_8 + r_3}$ \\
+        $t^0_9 \leftarrow \reg{t^0_9 + r_4}$ \\
+        $t^0_{10} \leftarrow \reg{t^0_{10} + r_5}$ \\
+        $\vect{y} \leftarrow \reg{\vect{x} + \vect{t^0}}$
+
+        {\centering $d=12$\\}
+        \noindent
+        $\vect{t^0} \leftarrow \reg{\vect{s^0} + (\vect{s^0} \gg 1)}$ \\
+        $t^0_0 \leftarrow \reg{t^0_0 + r_0}$ \\
+        $t^0_1 \leftarrow \reg{t^0_1 + r_1}$ \\
+        $t^0_2 \leftarrow \reg{t^0_2 + r_2 + r_6}$ \\
+        $t^0_3 \leftarrow \reg{t^0_3 + r_3}$ \\
+        $t^0_4 \leftarrow \reg{t^0_4 + r_4}$ \\
+        $t^0_5 \leftarrow \reg{t^0_5 + r_5 + r_6}$ \\
+        $t^0_6 \leftarrow \reg{t^0_6 + r_0}$ \\
+        $t^0_7 \leftarrow \reg{t^0_7 + r_1}$ \\
+        $t^0_8 \leftarrow \reg{t^0_8 + r_2 + r_7}$ \\
+        $t^0_9 \leftarrow \reg{t^0_9 + r_3}$ \\
+        $t^0_{10} \leftarrow \reg{t^0_{10} + r_4}$ \\
+        $t^0_{11} \leftarrow \reg{t^0_{11} + r_5 + r_7}$ \\
+        $\vect{y} \leftarrow \reg{\vect{x} + \vect{t^0}}$
+
+        {\centering $d=13,\dots,16$\\}
+        \noindent
+        $\vect{t^0} \leftarrow \reg{\vect{s^0} + (\vect{s^0} \gg 1)}$ \\
+        $\vect{t^1} \leftarrow \reg{\vect{s^1} + (\vect{s^1} \gg 3)}$ \\
+        $\vect{t^2} \leftarrow \reg{\vect{t^0} + \vect{t^1}}$ \\
+        $\vect{y} \leftarrow \reg{\vect{x} + \vect{t^2}}$
+    }
+\end{multicols}
+\end{document}
